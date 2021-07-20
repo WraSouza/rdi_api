@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace rdi_api.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class CustomerCardController : Controller
     {
         public IActionResult Index()
@@ -14,9 +16,26 @@ namespace rdi_api.Controllers
         }
 
         [HttpGet]
-        public void Get()
+        public string Get()
         {
+            return "Entrou Aqui";
+        }
 
+        [HttpGet("get-card-number/{year}")]
+        public ActionResult<IEnumerable<string>> GetCardNumber(int year)
+        {
+            bool validate = false;
+            DateTime data = DateTime.Now;
+            int currentyear = data.Year;
+            if (year < currentyear)
+                validate = true;
+
+            if (validate)
+                return Ok("Cartão Fora do Prazo");
+            else
+                return BadRequest("Cartão No Prazo de Validade");
+
+           // return Ok(validate);
         }
 
         [HttpPost]

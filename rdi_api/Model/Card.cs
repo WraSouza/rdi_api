@@ -9,17 +9,15 @@ namespace rdi_api.Model
     public class Card
     {
         [Key]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required(ErrorMessage ="Campo Obrigatório")]
-        [MaxLength(16,ErrorMessage =("Campo Deve Possuir 16 Caracteres"))]
-        [MinLength(16, ErrorMessage = "Campo Deve Possuir 16 Caracteres")]
+        [MaxLength(16, ErrorMessage = "Campo Deve Possuir 3 Dígitos no Máximo")]
         public string CardNumber { get; set; }
 
         [Required(ErrorMessage ="Campo Obrigatório")]
-        [MaxLength(5,ErrorMessage ="Campo Deve Possuir 5 Caracteres")]
-        [MinLength(1,ErrorMessage ="Campo Deve Possuir no Mínimo 1 Caracter")]
-        public string CVV { get; set; }
+        [Range(1,999,ErrorMessage ="O Campo Deve Ter 3 Dígitos no Máximo")]
+        public int CVV { get; set; }
 
     }
 }

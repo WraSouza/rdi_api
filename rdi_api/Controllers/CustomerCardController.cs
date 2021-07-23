@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using rdi_api.Model;
 
 namespace rdi_api.Controllers
 {
@@ -38,10 +39,10 @@ namespace rdi_api.Controllers
            // return Ok(validate);
         }
 
-        [HttpPost]
-        public void Post(int id,int cardnumber, int cvv)
+        [HttpPost("v1/card/")]
+        public IActionResult Post([FromBody] Card card)
         {
-
+            return Ok();
         }
     }
 }
